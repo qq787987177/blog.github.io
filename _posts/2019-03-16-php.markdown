@@ -1,0 +1,39 @@
+---
+layout: post
+title:  "Ubuntu php安装"
+date:   2019-03-16 20:38:45 +0800
+categories: study
+---
+
+安装PHP7.1
+``````
+sudo add-apt-repository ppa:ondrej/php
+sudo apt-get update
+sudo apt-get install php7.1 php7.1-common php7.1-fpm 
+sudo apt-get install php7.1-mbstring php7.1-xml php7.1-json php7.1-gd php7.1-curl php7.1-gmp php7.1-mysql
+设置时区
+sudo vi /etc/php/7.1/cli/php.ini
+date.timezone = Asia/Shanghai
+
+安装PHP APCU
+sudo apt-get install php-apcu php-apcu-bc
+``````
+
+安装redis扩展
+``````
+git clone https://github.com/phpredis/phpredis.git
+mv phpredis /etc/phpredis
+cd /etc/phpredis
+phpize
+./configure
+make
+sudo make install
+sudo vi /etc/php/7.1/cli/php.ini
+/php_shmop
+extension=/etc/phpredis/modules/redis.so
+``````
+
+
+[jekyll-docs]: https://jekyllrb.com/docs/home
+[jekyll-gh]:   https://github.com/jekyll/jekyll
+[jekyll-talk]: https://talk.jekyllrb.com/

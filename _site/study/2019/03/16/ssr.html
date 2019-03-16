@@ -3,19 +3,19 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.5.0 -->
-<title>Ubuntu系统配置 | Study Blog</title>
+<title>Ubuntu ssr | Study Blog</title>
 <meta name="generator" content="Jekyll v3.8.5" />
-<meta property="og:title" content="Ubuntu系统配置" />
+<meta property="og:title" content="Ubuntu ssr" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="安装系统" />
-<meta property="og:description" content="安装系统" />
-<link rel="canonical" href="http://localhost:4000/blog.github.io/study/2019/03/16/ubuntu.html" />
-<meta property="og:url" content="http://localhost:4000/blog.github.io/study/2019/03/16/ubuntu.html" />
+<meta name="description" content="安装ssr `````` 1.环境安装" />
+<meta property="og:description" content="安装ssr `````` 1.环境安装" />
+<link rel="canonical" href="http://localhost:4000/blog.github.io/study/2019/03/16/ssr.html" />
+<meta property="og:url" content="http://localhost:4000/blog.github.io/study/2019/03/16/ssr.html" />
 <meta property="og:site_name" content="Study Blog" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2019-03-16T20:26:45+08:00" />
+<meta property="article:published_time" content="2019-03-16T20:48:45+08:00" />
 <script type="application/ld+json">
-{"description":"安装系统","@type":"BlogPosting","url":"http://localhost:4000/blog.github.io/study/2019/03/16/ubuntu.html","headline":"Ubuntu系统配置","dateModified":"2019-03-16T20:26:45+08:00","datePublished":"2019-03-16T20:26:45+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/blog.github.io/study/2019/03/16/ubuntu.html"},"@context":"http://schema.org"}</script>
+{"description":"安装ssr `````` 1.环境安装","@type":"BlogPosting","url":"http://localhost:4000/blog.github.io/study/2019/03/16/ssr.html","headline":"Ubuntu ssr","dateModified":"2019-03-16T20:48:45+08:00","datePublished":"2019-03-16T20:48:45+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/blog.github.io/study/2019/03/16/ssr.html"},"@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/blog.github.io/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/blog.github.io/feed.xml" title="Study Blog" /></head>
 <body><header class="site-header" role="banner">
@@ -38,65 +38,88 @@
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">Ubuntu系统配置</h1>
+    <h1 class="post-title p-name" itemprop="name headline">Ubuntu ssr</h1>
     <p class="post-meta">
-      <time class="dt-published" datetime="2019-03-16T20:26:45+08:00" itemprop="datePublished">Mar 16, 2019
+      <time class="dt-published" datetime="2019-03-16T20:48:45+08:00" itemprop="datePublished">Mar 16, 2019
       </time></p>
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>安装系统</p>
+    <p>安装ssr</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1.环境安装
 
-<p>切换源</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 1.备份原来的数据源配置文件
-cp /etc/apt/sources.list /etc/apt/sources.list_backup
-# 2.编辑数据源配置文件
-vi /etc/apt/sources.list
+sudo apt-get install git
+2.获取ssr
 
-中科源
-http://mirrors.ustc.edu.cn/help/ubuntu.html
-sudo apt-get update
-删除vim
-sudo apt-get remove vim-common
-sudo apt-get install vim
-</code></pre></div></div>
-<p>安装PHP</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo add-apt-repository ppa:ondrej/php
-sudo apt-get update
-sudo apt-get install php7.2
-根据情况安装扩展
-
-</code></pre></div></div>
-<p>安装git</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo apt-get install git
-git config --global user.name "你的名字或昵称"
-git config --global user.email "你的邮箱"
-ssh-keygen
-cat ~/.ssh/id_rsa.pub
-加入github
-</code></pre></div></div>
-<p>安装ssr</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/SAMZONG/gfwlist2privoxy.git
+git clone https://github.com/SAMZONG/gfwlist2privoxy.git
 cd gfwlist2privoxy/
-sudo mv ssr /usr/local/bin
-sudo chmod +x /usr/local/bin/ssr
+mv ssr /usr/local/bin
+chmod +x /usr/local/bin/ssr
+3.安装ssr
+
 ssr install
-修改配置
+4.配置ssr
+
 ssr config
+复制代码
+{
+    "server": "0.0.0.0",　　//服务器IP
+    "server_ipv6": "::",
+    "server_port": 8388,　　//端口
+    "local_address": "127.0.0.1",
+    "local_port": 1080,
+
+    "password": "m",　　　　//密码
+    "method": "aes-128-ctr",　　　　
+    "protocol": "auth_aes128_md5",　　　　
+    "protocol_param": "",
+    "obfs": "tls1.2_ticket_auth_compatible",
+    "obfs_param": "",
+    "speed_limit_per_con": 0,
+    "speed_limit_per_user": 0,
+
+    "additional_ports" : {}, // only works under multi-user mode
+    "additional_ports_only" : false, // only works under multi-user mode
+    "timeout": 120,
+    "udp_timeout": 60,
+    "dns_ipv6": false,
+    "connect_verbose_info": 0,
+    "redirect": "",
+    "fast_open": false
+}
+复制代码
+//编辑完成后
+ESC
+
+//保存退出
+:wq
+5.启动ssr
+
 ssr start
-修改系统网络代理端口socket到1080
-</code></pre></div></div>
-<p>安装composer</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo curl -sS https://getcomposer.org/installer | sudo php -d detect_unicode=Off
-sudo mv composer.phar /usr/local/bin/composer
-cd /usr/local/bin/
-sudo chmod a+x composer
-sudo composer self-update
-sudo composer config -g repo.packagist composer https://packagist.laravel-china.org
+6.关闭ssr
+
+ssr stop
+7.安装配置代理
+
+复制代码
+apt-get install privoxy
+
+// 添加本地ssr服务到配置文件
+echo 'forward-socks5 / 127.0.0.1:1080 .' &gt;&gt; /etc/privoxy/config
+
+// Privoxy 默认监听端口是是8118
+export http_proxy=http://127.0.0.1:8118
+export https_proxy=http://127.0.0.1:8118
+export no_proxy=localhost
+
+// 启动服务
+systemctl start privoxy.service
+复制代码
+这样就完成了ssr安装配置。
 </code></pre></div></div>
 
 
-  </div><a class="u-url" href="/blog.github.io/study/2019/03/16/ubuntu.html" hidden></a>
+  </div><a class="u-url" href="/blog.github.io/study/2019/03/16/ssr.html" hidden></a>
 </article>
 
       </div>

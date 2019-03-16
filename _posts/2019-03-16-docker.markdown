@@ -1,96 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/blog.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/blog.github.io/" rel="alternate" type="text/html" /><updated>2019-03-16T20:49:07+08:00</updated><id>http://localhost:4000/blog.github.io/feed.xml</id><title type="html">Study Blog</title><subtitle>技术博客</subtitle><entry><title type="html">Ubuntu ssr</title><link href="http://localhost:4000/blog.github.io/study/2019/03/16/ssr.html" rel="alternate" type="text/html" title="Ubuntu ssr" /><published>2019-03-16T20:48:45+08:00</published><updated>2019-03-16T20:48:45+08:00</updated><id>http://localhost:4000/blog.github.io/study/2019/03/16/ssr</id><content type="html" xml:base="http://localhost:4000/blog.github.io/study/2019/03/16/ssr.html">&lt;p&gt;安装ssr&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1.环境安装
+---
+layout: post
+title:  "Docker常见命令"
+date:   2019-03-16 20:38:45 +0800
+categories: study
+---
 
-sudo apt-get install git
-2.获取ssr
+Docker常见命令
+``````
 
-git clone https://github.com/SAMZONG/gfwlist2privoxy.git
-cd gfwlist2privoxy/
-mv ssr /usr/local/bin
-chmod +x /usr/local/bin/ssr
-3.安装ssr
-
-ssr install
-4.配置ssr
-
-ssr config
-复制代码
-{
-    &quot;server&quot;: &quot;0.0.0.0&quot;,　　//服务器IP
-    &quot;server_ipv6&quot;: &quot;::&quot;,
-    &quot;server_port&quot;: 8388,　　//端口
-    &quot;local_address&quot;: &quot;127.0.0.1&quot;,
-    &quot;local_port&quot;: 1080,
-
-    &quot;password&quot;: &quot;m&quot;,　　　　//密码
-    &quot;method&quot;: &quot;aes-128-ctr&quot;,　　　　
-    &quot;protocol&quot;: &quot;auth_aes128_md5&quot;,　　　　
-    &quot;protocol_param&quot;: &quot;&quot;,
-    &quot;obfs&quot;: &quot;tls1.2_ticket_auth_compatible&quot;,
-    &quot;obfs_param&quot;: &quot;&quot;,
-    &quot;speed_limit_per_con&quot;: 0,
-    &quot;speed_limit_per_user&quot;: 0,
-
-    &quot;additional_ports&quot; : {}, // only works under multi-user mode
-    &quot;additional_ports_only&quot; : false, // only works under multi-user mode
-    &quot;timeout&quot;: 120,
-    &quot;udp_timeout&quot;: 60,
-    &quot;dns_ipv6&quot;: false,
-    &quot;connect_verbose_info&quot;: 0,
-    &quot;redirect&quot;: &quot;&quot;,
-    &quot;fast_open&quot;: false
-}
-复制代码
-//编辑完成后
-ESC
-
-//保存退出
-:wq
-5.启动ssr
-
-ssr start
-6.关闭ssr
-
-ssr stop
-7.安装配置代理
-
-复制代码
-apt-get install privoxy
-
-// 添加本地ssr服务到配置文件
-echo 'forward-socks5 / 127.0.0.1:1080 .' &amp;gt;&amp;gt; /etc/privoxy/config
-
-// Privoxy 默认监听端口是是8118
-export http_proxy=http://127.0.0.1:8118
-export https_proxy=http://127.0.0.1:8118
-export no_proxy=localhost
-
-// 启动服务
-systemctl start privoxy.service
-复制代码
-这样就完成了ssr安装配置。
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">安装ssr `````` 1.环境安装</summary></entry><entry><title type="html">docker安装</title><link href="http://localhost:4000/blog.github.io/study/2019/03/16/docker-install.html" rel="alternate" type="text/html" title="docker安装" /><published>2019-03-16T20:38:45+08:00</published><updated>2019-03-16T20:38:45+08:00</updated><id>http://localhost:4000/blog.github.io/study/2019/03/16/docker-install</id><content type="html" xml:base="http://localhost:4000/blog.github.io/study/2019/03/16/docker-install.html">&lt;p&gt;安装docker&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;docker ce
-https://docs.docker.com/install/linux/docker-ce/ubuntu/
-
-compose:
-https://docs.docker.com/compose/install/
-
-添加Docker用户组，避免总是sudo输入
-sudo groupadd docker   #
-添加一个新的docker用户组
-sudo gpasswd -a username docker   
-#添加当前用户到docker用户组里
-sudo service docker restart   
-#重启Docker后台监护进程
-docker version   
-#重启之后，尝试一下，是否生效
-sudo reboot   
-#若还未生效，则系统重启，则生效
-docker cmd --help  #
-查看命令的详细使用 例如：docker run --help
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">安装docker `````` docker ce https://docs.docker.com/install/linux/docker-ce/ubuntu/</summary></entry><entry><title type="html">Docker常见命令</title><link href="http://localhost:4000/blog.github.io/study/2019/03/16/docker.html" rel="alternate" type="text/html" title="Docker常见命令" /><published>2019-03-16T20:38:45+08:00</published><updated>2019-03-16T20:38:45+08:00</updated><id>http://localhost:4000/blog.github.io/study/2019/03/16/docker</id><content type="html" xml:base="http://localhost:4000/blog.github.io/study/2019/03/16/docker.html">&lt;p&gt;Docker常见命令&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
 Docker常见命令
 容器相关操作
 docker create # 创建一个容器但是不启动它  例如：docker create --name mycon php:5.6-fpm
@@ -103,7 +20,7 @@ docker run # 创建并启动一个容器
 
 　　　　-t: 为容器重新分配一个伪输入终端，通常与 -i 同时使用；
 
-　　　　--name=&quot;nginx-lb&quot;: 为容器指定一个名称；
+　　　　--name="nginx-lb": 为容器指定一个名称；
 
 　　　　-P: 容器的80端口映射到主机的随机端口
 
@@ -125,17 +42,17 @@ docker run # 创建并启动一个容器
 
 　　　　--dns-search example.com: 指定容器DNS搜索域名，默认和宿主一致；
 
-　　　　-h &quot;mars&quot;: 指定容器的hostname；
+　　　　-h "mars": 指定容器的hostname；
 
-　　　　-e username=&quot;ritchie&quot;: 设置环境变量；
+　　　　-e username="ritchie": 设置环境变量；
 
 　　　　--env-file=[]: 从指定文件读入环境变量；
 
-　　　　--cpuset=&quot;0-2&quot; or --cpuset=&quot;0,1,2&quot;: 绑定容器到指定CPU运行；
+　　　　--cpuset="0-2" or --cpuset="0,1,2": 绑定容器到指定CPU运行；
 
 　　　　-m :设置容器使用内存最大值；
 
-　　　　--net=&quot;bridge&quot;: 指定容器的网络连接类型，支持 bridge/host/none/container:&amp;lt;name|id&amp;gt; 四种类型；
+　　　　--net="bridge": 指定容器的网络连接类型，支持 bridge/host/none/container:<name|id> 四种类型；
 
 　　　　--link=[]: 添加链接到另一个容器；
 
@@ -169,7 +86,7 @@ docker ps # 显示状态为运行（Up）的容器
 　　　　-s :显示总的文件大小。
 
 docker inspect # 深入容器内部获取容器所有信息，例如：docker inspect mycon
-　　　　-f :指定返回值的模板文件。例如：docker inspect -f '' mycon （获取正在运行的容器mycon的 IP）
+　　　　-f :指定返回值的模板文件。例如：docker inspect -f '{{.NetworkSettings.IPAddress}}' mycon （获取正在运行的容器mycon的 IP）
 
 　　　　-s :显示总的文件大小。
 
@@ -182,12 +99,12 @@ docker logs # 查看容器的日志(stdout/stderr)
 
 　　　　-t : 显示时间戳
 
-　　　　--tail :仅列出最新N条容器日志，例如：docker logs --since=&quot;2017-05-01&quot; --tail=10 mycon（查看容器mycon从2017年5月1日后的最新10条日志。）
+　　　　--tail :仅列出最新N条容器日志，例如：docker logs --since="2017-05-01" --tail=10 mycon（查看容器mycon从2017年5月1日后的最新10条日志。）
 
 docker events # 得到docker服务器的实时的事件
-　　　　-f ：根据条件过滤事件；例如：docker events -f &quot;image&quot;=&quot;mysql:5.6&quot; --since=&quot;1466302400&quot; （显示docker 镜像为mysql:5.6 这个时间戳对应的日期之后的相关事件。）
+　　　　-f ：根据条件过滤事件；例如：docker events -f "image"="mysql:5.6" --since="1466302400" （显示docker 镜像为mysql:5.6 这个时间戳对应的日期之后的相关事件。）
 
-　　　　--since ：从指定的时间戳后显示所有事件;例如：docker events --since=&quot;1466302400&quot; （显示docker 在这个时间戳对应的日期之后的所有事件。）
+　　　　--since ：从指定的时间戳后显示所有事件;例如：docker events --since="1466302400" （显示docker 在这个时间戳对应的日期之后的所有事件。）
 
 　　　　--until ：流水时间显示到指定的时间为止；
 
@@ -265,7 +182,7 @@ docker build # 使用Dockerfile创建镜像（推荐）
 
 　　　　-m :设置内存最大值；
 
-　　　　--memory-swap :设置Swap的最大值为内存+swap，&quot;-1&quot;表示不限swap；
+　　　　--memory-swap :设置Swap的最大值为内存+swap，"-1"表示不限swap；
 
 　　　　--no-cache :创建镜像的过程不使用缓存；
 
@@ -292,7 +209,7 @@ docker commit # 从容器创建镜像
 
 　　　　-p :在commit时，将容器暂停。
 
-　　　　docker commit -a &quot;xst&quot; -m &quot;it is test&quot;  a404c6c174a2  mymysql:v1   #将容器a404c6c174a2 保存为新的镜像mymysql:v1,并添加提交人信息和说明信息。（当在容器内做了改变后可以提交作为自己定制的镜像）
+　　　　docker commit -a "xst" -m "it is test"  a404c6c174a2  mymysql:v1   #将容器a404c6c174a2 保存为新的镜像mymysql:v1,并添加提交人信息和说明信息。（当在容器内做了改变后可以提交作为自己定制的镜像）
 
 docker rmi # 删除一个镜像
 　　　　-f :强制删除；
@@ -354,10 +271,10 @@ docker info  #显示 Docker 系统信息，包括镜像和容器数。
 docker version  #显示 Docker 版本信息。参数-f :指定返回值的模板文件。
  
 Docker常见操作例子
-docker inspect id | grep IPAddress | cut -d '&quot;' -f 4   #
+docker inspect id | grep IPAddress | cut -d '"' -f 4   #
 获取Container IP地址（Container状态必须是Up）
 docker inspect mycon | grep IPAddress   #查看mycon容器的IP地址相关的字段
-docker inspect -f '  -&amp;gt;  ' id   #
+docker inspect -f '{{range $p, $conf := .NetworkSettings.Ports}} {{$p}} -> {{(index $conf 0).HostPort}} {{end}}' id   #
 获取端口映射
 docker exec container_id env   #
 获取环境变量
@@ -377,7 +294,7 @@ Dockerfile是docker构建镜像的基础，也是docker区别于其他容器的�
 FROM , 从一个基础镜像构建新的镜像
 FROM ubuntu 
 MAINTAINER , 维护者信息
-MAINTAINER William &amp;lt;wlj@nicescale.com&amp;gt;
+MAINTAINER William <wlj@nicescale.com>
 ENV , 设置环境变量
 ENV TEST 1
 RUN , 非交互式运行shell命令
@@ -389,14 +306,14 @@ WORKDIR /path/to/workdir, 设置工作目录
 WORKDIR /var/www
 USER , 设置用户ID
 USER nginx
-VULUME &amp;lt;#dir&amp;gt;, 设置volume
+VULUME <#dir>, 设置volume
 VOLUME [‘/data’]
 EXPOSE , 暴露哪些端口
 EXPOSE 80 443 
 ENTRYPOINT [‘executable’, ‘param1’,’param2’]执行命令
-ENTRYPOINT [&quot;/usr/sbin/nginx&quot;]
+ENTRYPOINT ["/usr/sbin/nginx"]
 CMD [“param1”,”param2”]
-CMD [&quot;start&quot;]
+CMD ["start"]
 docker创建、启动container时执行的命令，如果设置了ENTRYPOINT，则CMD将作为参数
 
 Dockerfile最佳实践
@@ -421,7 +338,7 @@ docker push 192.168.1.2/csphere/nginx:1.7
 
 # docker run -it --name con01 busybox:latest
 / # ip addr    #容器里执行
-1: lo: &amp;lt;LOOPBACK,UP,LOWER_UP&amp;gt; mtu 65536 qdisc noqueue state UNKNOWN group default 
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default 
 link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
 inet 127.0.0.1/8 scope host lo
    valid_lft forever preferred_lft forever
@@ -455,9 +372,9 @@ con03
 
 # docker ps -a
 CONTAINER ID        IMAGE                    COMMAND                CREATED             STATUS                      PORTS                                             NAMES
-efc9bda4a2ff        csphere/test:0.1         &quot;/usr/local/bin/run    4 minutes ago       Up 17 seconds                                                                 con03               
-99aa6ee25adc        busybox:latest           &quot;/bin/sh&quot;              14 minutes ago      Exited (0) 12 minutes ago                                                     con02               
-831c93de9b9f        busybox:latest           &quot;/bin/sh&quot;              2 hours ago         Up 27 minutes                                                                 con01
+efc9bda4a2ff        csphere/test:0.1         "/usr/local/bin/run    4 minutes ago       Up 17 seconds                                                                 con03               
+99aa6ee25adc        busybox:latest           "/bin/sh"              14 minutes ago      Exited (0) 12 minutes ago                                                     con02               
+831c93de9b9f        busybox:latest           "/bin/sh"              2 hours ago         Up 27 minutes                                                                 con01
 # docker rm con02     #容器停止的状态
 # docker rm -f con03  #容器开启的状态
 镜像操作
@@ -499,7 +416,7 @@ docker rmi -f busybox:latest     #容器使用此镜像创建，此容器状态�
 
 # docker history busybox:latest
 IMAGE               CREATED             CREATED BY                                      SIZE
-8c2e06607696        3 weeks ago         /bin/sh -c #(nop) CMD [&quot;/bin/sh&quot;]               0 B
+8c2e06607696        3 weeks ago         /bin/sh -c #(nop) CMD ["/bin/sh"]               0 B
 6ce2e90b0bc7        3 weeks ago         /bin/sh -c #(nop) ADD file:8cf517d90fe79547c4   2.43 MB
 cf2616975b4a        3 weeks ago         /bin/sh -c #(nop) MAINTAINER Jérôme Petazzo     0 B
 
@@ -613,157 +530,9 @@ server {
 　安装memcached也是同理。。。
 
    然后重启该容器即可。
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">Docker常见命令 ``````</summary></entry><entry><title type="html">Ubuntu mysql安装</title><link href="http://localhost:4000/blog.github.io/study/2019/03/16/mysql.html" rel="alternate" type="text/html" title="Ubuntu mysql安装" /><published>2019-03-16T20:38:45+08:00</published><updated>2019-03-16T20:38:45+08:00</updated><id>http://localhost:4000/blog.github.io/study/2019/03/16/mysql</id><content type="html" xml:base="http://localhost:4000/blog.github.io/study/2019/03/16/mysql.html">&lt;p&gt;安装mysql5.6&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo apt-get install software-properties-common
-sudo add-apt-repository -y ppa:ondrej/mysql-5.6
-sudo apt-get update
-sudo apt-get install mysql-server-5.6
-sudo service mysql start //启动mysql
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+``````
 
-&lt;p&gt;权限问题&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;grant all privileges on *.* to 'root'@'%' identified by '123456' with grant option;
-flush privileges;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">安装mysql5.6 sudo apt-get install software-properties-common sudo add-apt-repository -y ppa:ondrej/mysql-5.6 sudo apt-get update sudo apt-get install mysql-server-5.6 sudo service mysql start //启动mysql</summary></entry><entry><title type="html">Ubuntu php安装</title><link href="http://localhost:4000/blog.github.io/study/2019/03/16/php.html" rel="alternate" type="text/html" title="Ubuntu php安装" /><published>2019-03-16T20:38:45+08:00</published><updated>2019-03-16T20:38:45+08:00</updated><id>http://localhost:4000/blog.github.io/study/2019/03/16/php</id><content type="html" xml:base="http://localhost:4000/blog.github.io/study/2019/03/16/php.html">&lt;p&gt;安装PHP7.1&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo add-apt-repository ppa:ondrej/php
-sudo apt-get update
-sudo apt-get install php7.1 php7.1-common php7.1-fpm 
-sudo apt-get install php7.1-mbstring php7.1-xml php7.1-json php7.1-gd php7.1-curl php7.1-gmp php7.1-mysql
-设置时区
-sudo vi /etc/php/7.1/cli/php.ini
-date.timezone = Asia/Shanghai
 
-安装PHP APCU
-sudo apt-get install php-apcu php-apcu-bc
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;安装redis扩展&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git clone https://github.com/phpredis/phpredis.git
-mv phpredis /etc/phpredis
-cd /etc/phpredis
-phpize
-./configure
-make
-sudo make install
-sudo vi /etc/php/7.1/cli/php.ini
-/php_shmop
-extension=/etc/phpredis/modules/redis.so
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">安装PHP7.1 `````` sudo add-apt-repository ppa:ondrej/php sudo apt-get update sudo apt-get install php7.1 php7.1-common php7.1-fpm sudo apt-get install php7.1-mbstring php7.1-xml php7.1-json php7.1-gd php7.1-curl php7.1-gmp php7.1-mysql 设置时区 sudo vi /etc/php/7.1/cli/php.ini date.timezone = Asia/Shanghai</summary></entry><entry><title type="html">Ubuntu redis安装</title><link href="http://localhost:4000/blog.github.io/study/2019/03/16/redis.html" rel="alternate" type="text/html" title="Ubuntu redis安装" /><published>2019-03-16T20:38:45+08:00</published><updated>2019-03-16T20:38:45+08:00</updated><id>http://localhost:4000/blog.github.io/study/2019/03/16/redis</id><content type="html" xml:base="http://localhost:4000/blog.github.io/study/2019/03/16/redis.html">&lt;p&gt;安装redis&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo add-apt-repository ppa:chris-lea/redis-server
-sudo apt-get update
-sudo apt-get install redis-server
-
-symfony出bug在snc_redis的配置中添加logging: false
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">安装redis `````` sudo add-apt-repository ppa:chris-lea/redis-server sudo apt-get update sudo apt-get install redis-server</summary></entry><entry><title type="html">Ubuntu系统配置</title><link href="http://localhost:4000/blog.github.io/study/2019/03/16/ubuntu.html" rel="alternate" type="text/html" title="Ubuntu系统配置" /><published>2019-03-16T20:26:45+08:00</published><updated>2019-03-16T20:26:45+08:00</updated><id>http://localhost:4000/blog.github.io/study/2019/03/16/ubuntu</id><content type="html" xml:base="http://localhost:4000/blog.github.io/study/2019/03/16/ubuntu.html">&lt;p&gt;安装系统&lt;/p&gt;
-
-&lt;p&gt;切换源&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# 1.备份原来的数据源配置文件
-cp /etc/apt/sources.list /etc/apt/sources.list_backup
-# 2.编辑数据源配置文件
-vi /etc/apt/sources.list
-
-中科源
-http://mirrors.ustc.edu.cn/help/ubuntu.html
-sudo apt-get update
-删除vim
-sudo apt-get remove vim-common
-sudo apt-get install vim
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;安装PHP&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo add-apt-repository ppa:ondrej/php
-sudo apt-get update
-sudo apt-get install php7.2
-根据情况安装扩展
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;安装git&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo apt-get install git
-git config --global user.name &quot;你的名字或昵称&quot;
-git config --global user.email &quot;你的邮箱&quot;
-ssh-keygen
-cat ~/.ssh/id_rsa.pub
-加入github
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;安装ssr&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git clone https://github.com/SAMZONG/gfwlist2privoxy.git
-cd gfwlist2privoxy/
-sudo mv ssr /usr/local/bin
-sudo chmod +x /usr/local/bin/ssr
-ssr install
-修改配置
-ssr config
-ssr start
-修改系统网络代理端口socket到1080
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;安装composer&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo curl -sS https://getcomposer.org/installer | sudo php -d detect_unicode=Off
-sudo mv composer.phar /usr/local/bin/composer
-cd /usr/local/bin/
-sudo chmod a+x composer
-sudo composer self-update
-sudo composer config -g repo.packagist composer https://packagist.laravel-china.org
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">安装系统</summary></entry><entry><title type="html">ssl证书生成</title><link href="http://localhost:4000/blog.github.io/study/2019/03/16/nginx-ssl.html" rel="alternate" type="text/html" title="ssl证书生成" /><published>2019-03-16T20:19:45+08:00</published><updated>2019-03-16T20:19:45+08:00</updated><id>http://localhost:4000/blog.github.io/study/2019/03/16/nginx-ssl</id><content type="html" xml:base="http://localhost:4000/blog.github.io/study/2019/03/16/nginx-ssl.html">&lt;p&gt;创建证书&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1.创建服务器证书密钥文件 server.key：
-openssl genrsa -des3 -out server.key 1024
-输入密码，确认密码，自己随便定义，但是要记住，后面会用到。
-2.创建服务器证书的申请文件 server.csr
-openssl req -new -key server.key -out server.csr
-输出内容为：
-Enter pass phrase for root.key: ← 输入前面创建的密码 
-Country Name (2 letter code) [AU]:CN ← 国家代号，中国输入CN 
-State or Province Name (full name) [Some-State]:BeiJing ← 省的全名，拼音 
-Locality Name (eg, city) []:BeiJing ← 市的全名，拼音 
-Organization Name (eg, company) [Internet Widgits Pty Ltd]:MyCompany Corp. ← 公司英文名 
-Organizational Unit Name (eg, section) []: ← 可以不输入 
-Common Name (eg, YOUR name) []: ← 此时不输入 
-Email Address []:admin@mycompany.com ← 电子邮箱，可随意填
-Please enter the following ‘extra’ attributes 
-to be sent with your certificate request 
-A challenge password []: ← 可以不输入 
-An optional company name []: ← 可以不输入
-4.备份一份服务器密钥文件
-cp server.key server.key.org
-5.去除文件口令
-openssl rsa -in server.key.org -out server.key
-6.生成证书文件server.crt
-openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">创建证书</summary></entry><entry><title type="html">使用github pages搭建blog</title><link href="http://localhost:4000/blog.github.io/study/2019/03/16/how-to-create-blog.html" rel="alternate" type="text/html" title="使用github pages搭建blog" /><published>2019-03-16T16:03:45+08:00</published><updated>2019-03-16T16:03:45+08:00</updated><id>http://localhost:4000/blog.github.io/study/2019/03/16/how-to-create-blog</id><content type="html" xml:base="http://localhost:4000/blog.github.io/study/2019/03/16/how-to-create-blog.html">&lt;p&gt;创建Github Repository
-修改Settings Repository name为xxx.github.io
-修改GitHub Pages Source为Master分支后可以看到blog地址生成&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo apt-get install ruby-full build-essential zlib1g-dev
-echo '# Install Ruby Gems to ~/gems' &amp;gt;&amp;gt; ~/.bashrc
-echo 'export GEM_HOME=&quot;$HOME/gems&quot;' &amp;gt;&amp;gt; ~/.bashrc
-echo 'export PATH=&quot;$HOME/gems/bin:$PATH&quot;' &amp;gt;&amp;gt; ~/.bashrc
-source ~/.bashrc
-gem install jekyll bundler
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;安装Jekyll&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo apt-get install ruby-full build-essential zlib1g-dev
-echo '# Install Ruby Gems to ~/gems' &amp;gt;&amp;gt; ~/.bashrc
-echo 'export GEM_HOME=&quot;$HOME/gems&quot;' &amp;gt;&amp;gt; ~/.bashrc
-echo 'export PATH=&quot;$HOME/gems/bin:$PATH&quot;' &amp;gt;&amp;gt; ~/.bashrc
-source ~/.bashrc
-gem install jekyll bundler
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;创建新的blog&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;jekyll new myblog
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;启动Jekyll&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bundle exec jekyll serve
-启动后127.0.0.1：4000查看
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;修改_config.yml文件&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;修改相关数据
-baseurl改为github的地址xxx.github.io
-重启jekyll可使配置生效
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;创建blog&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;在_posts文件下面创建类似模板文件
-categories为大类别,会自动在_site下生成和categories的值的同名文件目录
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">创建Github Repository 修改Settings Repository name为xxx.github.io 修改GitHub Pages Source为Master分支后可以看到blog地址生成</summary></entry></feed>
+[jekyll-docs]: https://jekyllrb.com/docs/home
+[jekyll-gh]:   https://github.com/jekyll/jekyll
+[jekyll-talk]: https://talk.jekyllrb.com/

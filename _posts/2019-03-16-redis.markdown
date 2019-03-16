@@ -1,0 +1,19 @@
+---
+layout: post
+title:  "Ubuntu redis安装"
+date:   2019-03-16 20:38:45 +0800
+categories: study
+---
+安装redis
+``````
+sudo add-apt-repository ppa:chris-lea/redis-server
+sudo apt-get update
+sudo apt-get install redis-server
+
+symfony出bug在snc_redis的配置中添加logging: false
+``````
+
+
+[jekyll-docs]: https://jekyllrb.com/docs/home
+[jekyll-gh]:   https://github.com/jekyll/jekyll
+[jekyll-talk]: https://talk.jekyllrb.com/
