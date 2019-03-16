@@ -1,0 +1,26 @@
+---
+layout: post
+title:  "mysql相关"
+date:   2019-03-16 20:38:45 +0800
+categories: study
+---
+mysql相关
+``````
+按距离排序
+SELECT
+	*
+FROM
+	sb_user_geo
+ORDER BY
+	ACOS(
+		SIN(('.$city_lat.' * 3.1415) / 180) * SIN((lat * 3.1415) / 180) + COS(('.$city_lat.' * 3.1415) / 180) * COS((lat * 3.1415) / 180) * COS(
+			('.$city_lng.' * 3.1415) / 180 - (lng * 3.1415) / 180
+		)
+	) * 6380 ASC
+LIMIT 30
+``````
+
+
+[jekyll-docs]: https://jekyllrb.com/docs/home
+[jekyll-gh]:   https://github.com/jekyll/jekyll
+[jekyll-talk]: https://talk.jekyllrb.com/
