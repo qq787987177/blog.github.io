@@ -1,0 +1,25 @@
+---
+layout: post
+title:  "Ubuntu mysql安装"
+date:   2019-03-16 20:38:45 +0800
+categories: mysql
+---
+安装mysql5.6
+``````
+sudo apt-get install software-properties-common
+sudo add-apt-repository -y ppa:ondrej/mysql-5.6
+sudo apt-get update
+sudo apt-get install mysql-server-5.6
+sudo service mysql start //启动mysql
+``````
+
+权限问题
+``````
+grant all privileges on *.* to 'root'@'%' identified by '123456' with grant option;
+flush privileges;
+``````
+
+
+[jekyll-docs]: https://jekyllrb.com/docs/home
+[jekyll-gh]:   https://github.com/jekyll/jekyll
+[jekyll-talk]: https://talk.jekyllrb.com/

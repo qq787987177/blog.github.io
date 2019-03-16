@@ -1,0 +1,538 @@
+---
+layout: post
+title:  "Docker常见命令"
+date:   2019-03-16 20:38:45 +0800
+categories: docker
+---
+
+Docker常见命令
+``````
+
+Docker常见命令
+容器相关操作
+docker create # 创建一个容器但是不启动它  例如：docker create --name mycon php:5.6-fpm
+docker run # 创建并启动一个容器
+　　　　-a stdin: 指定标准输入输出内容类型，可选 STDIN/STDOUT/STDERR 三项；
+
+　　　　-d: 后台运行容器，并返回容器ID；
+
+　　　　-i: 以交互模式运行容器，通常与 -t 同时使用；
+
+　　　　-t: 为容器重新分配一个伪输入终端，通常与 -i 同时使用；
+
+　　　　--name="nginx-lb": 为容器指定一个名称；
+
+　　　　-P: 容器的80端口映射到主机的随机端口
+
+　　　　-p: 容器的端口映射到主机的对应端口，例如： -p 80:80 
+
+　　　　-v: 主机的目录映射(挂载)到容器的目录，例如：-v /home/ubuntu/nginx/www:/www 
+
+　　　　-m 或 --memory：设置内存使用限额。例如 -m 200M、--memory 300M；
+
+　　　　--memory-swap：设置内存+swap的使用限额，当-m 200M --memory-swap=300M时，表示容器可以使用200M内存和100Mswap；
+
+　　　　--vm：启动内存工作线程数。例如：--vm 1，启动1个内存工作线程；
+
+　　　　--vm-bytes 280M：每个工作线程分配280M内存；
+
+　　　　-c 或 --cpu-shares：设置容器使用cpu权重；
+
+　　　　--dns 8.8.8.8: 指定容器使用的DNS服务器，默认和宿主一致；
+
+　　　　--dns-search example.com: 指定容器DNS搜索域名，默认和宿主一致；
+
+　　　　-h "mars": 指定容器的hostname；
+
+　　　　-e username="ritchie": 设置环境变量；
+
+　　　　--env-file=[]: 从指定文件读入环境变量；
+
+　　　　--cpuset="0-2" or --cpuset="0,1,2": 绑定容器到指定CPU运行；
+
+　　　　-m :设置容器使用内存最大值；
+
+　　　　--net="bridge": 指定容器的网络连接类型，支持 bridge/host/none/container:<name|id> 四种类型；
+
+　　　　--link=[]: 添加链接到另一个容器；
+
+　　　　--expose=[]: 开放一个端口或一组端口；
+
+docker stop # 停止容器运行，发送信号SIGTERM，例如：docker stop mycon
+docker start # 启动一个停止状态的容器，例如：docker start mycon
+docker restart # 重启一个容器，例如：docker restart mycon
+docker rm # 删除一个容器，例如:doecker rm mycon
+docker kill # 发送信号给容器，默认SIGKILL，例如：docker kill -s KILL mycon （-s表示向容器发送一个信号）
+docker attach # 连接(进入)到一个正在运行的容器，例如：docker attach --sig-proxy=false mycon（容器mynginx将访问日志指到标准输出，连接到容器查看访问信息。）
+docker wait # 阻塞到一个容器，直到容器停止运行。例如：docker wait mycon
+docker pause  #暂停容器中所有的进程。 例如：docker pause mycon
+docker unpause  #恢复容器中所有的进程。 例如：docker unpause mycon
+获取容器相关信息
+docker ps # 显示状态为运行（Up）的容器
+　　　　-a :显示所有的容器，包括未运行的。例如：docker ps -a
+
+　　　　-f :根据条件过滤显示的内容。
+
+　　　　--format :指定返回值的模板文件。
+
+　　　　-l :显示最近创建的容器。
+
+　　　　-n : 列出最近创建的n个容器。例如：docker ps -n 5
+
+　　　　--no-trunc :不截断输出。
+
+　　　　-q :静默模式，只显示容器编号。
+
+　　　　-s :显示总的文件大小。
+
+docker inspect # 深入容器内部获取容器所有信息，例如：docker inspect mycon
+　　　　-f :指定返回值的模板文件。例如：docker inspect -f '{{.NetworkSettings.IPAddress}}' mycon （获取正在运行的容器mycon的 IP）
+
+　　　　-s :显示总的文件大小。
+
+　　　　--type :为指定类型返回JSON。
+
+docker logs # 查看容器的日志(stdout/stderr)
+　　　　-f : 跟踪日志输出,例如：docker logs -f mycon（查看容器mycon的日志输出）
+
+　　　　--since :显示某个开始时间的所有日志
+
+　　　　-t : 显示时间戳
+
+　　　　--tail :仅列出最新N条容器日志，例如：docker logs --since="2017-05-01" --tail=10 mycon（查看容器mycon从2017年5月1日后的最新10条日志。）
+
+docker events # 得到docker服务器的实时的事件
+　　　　-f ：根据条件过滤事件；例如：docker events -f "image"="mysql:5.6" --since="1466302400" （显示docker 镜像为mysql:5.6 这个时间戳对应的日期之后的相关事件。）
+
+　　　　--since ：从指定的时间戳后显示所有事件;例如：docker events --since="1466302400" （显示docker 在这个时间戳对应的日期之后的所有事件。）
+
+　　　　--until ：流水时间显示到指定的时间为止；
+
+docker port # 显示容器的端口映射，例如：docker port mycon
+docker top # 显示容器的进程信息，支持ps参数。例如docker top mycon
+docker diff # 显示容器文件系统的前后变化， 检查容器里文件结构的更改。例如：docker diff mycon
+导出容器
+docker cp # 从容器里向外拷贝文件或目录
+　　　　-L :保持源目标中的链接
+
+　　　　docker cp /www/test mycon:/www/  #将主机/www/test目录拷贝到容器mycon的/www目录下
+
+　　　　docker cp /www/test mycon:/www   #将主机/www/test目录拷贝到容器mycon中，目录重命名为www
+
+　　　　docker cp mycon:/www /tmp/test    #将容器mycon中的/www目录拷贝到主机的/tmp/test目录中
+
+docker export # 将容器整个文件系统导出为一个tar包，不带layers、tag等信息
+　　　　-o :将输入内容写到文件。例如：docker export -o mysql-`date +%Y%m%d`.tar a404c6c174a2  #将id为a404c6c174a2的容器按日期保存为tar文件。
+
+执行
+docker exec # 在容器里执行一个命令，可以执行bash进入交互式
+　　　　-d :分离模式: 在后台运行
+
+　　　　-i :即使没有附加也保持STDIN 打开
+
+　　　　-t :分配一个伪终端
+
+　　　　docker exec -i -t mycon /bin/bash   #在容器mycon中开启一个交互模式的终端
+
+　　　　docker exec -it mycon /bin/sh  /data/test.sh  #在容器mycon中以交互模式执行容器内/data/test.sh脚本
+
+镜像操作
+docker images # 显示本地所有的镜像列表
+　　　　-a :列出本地所有的镜像（含中间映像层，默认情况下，过滤掉中间映像层）；
+
+　　　　--digests :显示镜像的摘要信息；
+
+　　　　-f :显示满足条件的镜像；
+
+　　　　--format :指定返回值的模板文件；
+
+　　　　--no-trunc :显示完整的镜像信息；
+
+　　　　-q :只显示镜像ID。
+
+docker import # 从一个tar包创建一个镜像，往往和export结合使用
+　　　　-c :应用docker 指令创建镜像；
+
+　　　　-m :提交时的说明文字；
+
+　　　　docker import my_ubuntu_v3.tar my/ubuntu:v4    #从镜像归档文件my_ubuntu_v3.tar创建镜像，命名为my/ubuntu:v4
+
+docker build # 使用Dockerfile创建镜像（推荐）
+　　　　--build-arg=[] :设置镜像创建时的变量；
+
+　　　　--cpu-shares :设置 cpu 使用权重；
+
+　　　　--cpu-period :限制 CPU CFS周期；
+
+　　　　--cpu-quota :限制 CPU CFS配额；
+
+　　　　--cpuset-cpus :指定使用的CPU id；
+
+　　　　--cpuset-mems :指定使用的内存 id；
+
+　　　　--disable-content-trust :忽略校验，默认开启；
+
+　　　　-f :指定要使用的Dockerfile路径；
+
+　　　　--force-rm :设置镜像过程中删除中间容器；
+
+　　　　--isolation :使用容器隔离技术；
+
+　　　　--label=[] :设置镜像使用的元数据；
+
+　　　　-m :设置内存最大值；
+
+　　　　--memory-swap :设置Swap的最大值为内存+swap，"-1"表示不限swap；
+
+　　　　--no-cache :创建镜像的过程不使用缓存；
+
+　　　　--pull :尝试去更新镜像的新版本；
+
+　　　　-q :安静模式，成功后只输出镜像ID；
+
+　　　　--rm :设置镜像成功后删除中间容器；
+
+　　　　--shm-size :设置/dev/shm的大小，默认值是64M；
+
+　　　　--ulimit :Ulimit配置。
+
+　　　　docker build -t test/ubuntu:v1  #使用当前目录的Dockerfile创建镜像。
+
+　　　　docker build github.com/creack/docker-firefox  #使用URL github.com/creack/docker-firefox 的 Dockerfile 创建镜像。
+
+docker commit # 从容器创建镜像
+　　　　-a :提交的镜像作者；
+
+　　　　-c :使用Dockerfile指令来创建镜像；
+
+　　　　-m :提交时的说明文字；
+
+　　　　-p :在commit时，将容器暂停。
+
+　　　　docker commit -a "xst" -m "it is test"  a404c6c174a2  mymysql:v1   #将容器a404c6c174a2 保存为新的镜像mymysql:v1,并添加提交人信息和说明信息。（当在容器内做了改变后可以提交作为自己定制的镜像）
+
+docker rmi # 删除一个镜像
+　　　　-f :强制删除；
+
+　　　　--no-prune :不移除该镜像的过程镜像，默认移除；
+
+　　　　docker rmi -f test/ubuntu:16.04  #强制删除本地镜像test/ubuntu:16.04。
+
+docker load # 从一个tar包创建一个镜像，和save配合使用
+docker save # 将一个镜像保存为一个tar包，带layers和tag信息
+　　　　-o :输出到的文件。
+
+　　　　docker save -o ubuntu_16.tar  test/ubuntu:v3   #将镜像test/ubuntu:16.04 生成ubuntu_16.tar文档
+
+docker history # 显示生成一个镜像的历史命令
+　　　　-H :以可读的格式打印镜像大小和日期，默认为true；
+
+　　　　--no-trunc :显示完整的提交记录；
+
+　　　　-q :仅列出提交记录ID。
+
+　　　　docker history test/ubuntu:16.04   #查看本地镜像test/ubuntu:16.04的创建历史。
+
+docker tag # 为镜像起一个别名
+　　　　docker tag ubuntu:15.10 test/ubuntu:v15（将镜像ubuntu:15.10标记为 runoob/ubuntu:v15 镜像。）
+
+ 
+
+镜像仓库(registry)操作
+docker login # 登录到一个registry，如果未指定镜像仓库地址，默认为官方仓库 Docker Hub。例如：docker login -u 用户名 -p 密码
+docker logout  #登出一个reigsty，如果未指定镜像仓库地址，默认为官方仓库 Docker Hub。例如：docker logout
+docker search # 从registry仓库搜索镜像
+　　　　--automated :只列出 automated build类型的镜像；
+
+　　　　--no-trunc :显示完整的镜像描述；
+
+　　　　-s :列出收藏数不小于指定值的镜像。
+
+　　　　docker search php:5.6-fpm  #从Docker Hub查找镜像名php5.6-fpm
+
+　　　　docker search -s 10 java   #从Docker Hub查找所有镜像名包含java，并且收藏数大于10的镜像
+
+docker pull # 从仓库下载镜像到本地 
+　　　　-a :拉取所有 tagged 镜像
+
+　　　　--disable-content-trust :忽略镜像的校验,默认开启
+
+　　　　docker pull php:5.6-fpm   #从仓库下载php5.6-fpm镜像到本地
+
+　　　　docker pull -a java   #从仓库下载REPOSITORY为java的所有镜像。
+
+docker push # 将一个镜像push到registry仓库中，要先登陆到镜像仓库
+　　　　--disable-content-trust :忽略镜像的校验,默认开启
+
+　　　　docker push mycon:v1  #上传本地镜像mycon:v1到镜像仓库中。
+
+查看docker信息与版本
+docker info  #显示 Docker 系统信息，包括镜像和容器数。
+docker version  #显示 Docker 版本信息。参数-f :指定返回值的模板文件。
+ 
+Docker常见操作例子
+docker inspect id | grep IPAddress | cut -d '"' -f 4   #
+获取Container IP地址（Container状态必须是Up）
+docker inspect mycon | grep IPAddress   #查看mycon容器的IP地址相关的字段
+docker inspect -f '{{range $p, $conf := .NetworkSettings.Ports}} {{$p}} -> {{(index $conf 0).HostPort}} {{end}}' id   #
+获取端口映射
+docker exec container_id env   #
+获取环境变量
+docker kill $(docker ps -q)   #
+杀掉所有正在运行的容器
+docker ps -a | grep 'weeks ago' | awk '{print $1}' | xargs docker rm   #
+删除老的(一周前创建)容器
+docker rm `docker ps -a -q`   #
+删除已经停止的容器
+docker rmi $(docker images -q)   #
+删除所有镜像，小心
+Dockerfile相关
+Dockerfile是docker构建镜像的基础，也是docker区别于其他容器的重要特征，正是有了Dockerfile，docker的自动化和可移植性才成为可能。
+
+不论是开发还是运维，学会编写Dockerfile几乎是必备的，这有助于你理解整个容器的运行。
+
+FROM , 从一个基础镜像构建新的镜像
+FROM ubuntu 
+MAINTAINER , 维护者信息
+MAINTAINER William <wlj@nicescale.com>
+ENV , 设置环境变量
+ENV TEST 1
+RUN , 非交互式运行shell命令
+RUN apt-get -y update 
+RUN apt-get -y install nginx
+ADD , 将外部文件拷贝到镜像里,src可以为url
+ADD http://nicescale.com/  /data/nicescale.tgz
+WORKDIR /path/to/workdir, 设置工作目录
+WORKDIR /var/www
+USER , 设置用户ID
+USER nginx
+VULUME <#dir>, 设置volume
+VOLUME [‘/data’]
+EXPOSE , 暴露哪些端口
+EXPOSE 80 443 
+ENTRYPOINT [‘executable’, ‘param1’,’param2’]执行命令
+ENTRYPOINT ["/usr/sbin/nginx"]
+CMD [“param1”,”param2”]
+CMD ["start"]
+docker创建、启动container时执行的命令，如果设置了ENTRYPOINT，则CMD将作为参数
+
+Dockerfile最佳实践
+尽量将一些常用不变的指令放到前面
+CMD和ENTRYPOINT尽量使用json数组方式
+通过Dockerfile构建image
+docker build csphere/nginx:1.7 .
+镜像仓库Registry
+镜像从Dockerfile build生成后，需要将镜像推送(push)到镜像仓库。企业内部都需要构建一个私有docker registry，这个registry可以看作二进制的scm，CI/CD也需要围绕registry进行。
+
+部署registry
+mkdir /registry
+docker run  -p 80:5000  -e STORAGE_PATH=/registry  -v /registry:/registry  registry:2.0
+推送镜像保存到仓库
+假设192.168.1.2是registry仓库的地址：
+
+docker tag  csphere/nginx:1.7 192.168.1.2/csphere/nginx:1.7
+docker push 192.168.1.2/csphere/nginx:1.7
+几个简单小例子
+容器操作
+1.创建并拉取busybox
+
+# docker run -it --name con01 busybox:latest
+/ # ip addr    #容器里执行
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default 
+link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+inet 127.0.0.1/8 scope host lo
+   valid_lft forever preferred_lft forever
+Segmentation fault (core dumped)
+/ # ping www.csphere.cn
+PING www.csphere.cn (117.121.26.243): 56 data bytes
+64 bytes from 117.121.26.243: seq=0 ttl=48 time=3.139 ms
+64 bytes from 117.121.26.243: seq=1 ttl=48 time=3.027 ms
+^C
+--- www.csphere.cn ping statistics ---
+2 packets transmitted, 2 packets received, 0% packet loss
+round-trip min/avg/max = 3.027/3.083/3.139 ms
+exit    #退出容器
+2.创建测试容器
+
+docker run -d --name con03 csphere/test:0.1
+efc9bda4a2ff2f479b18e0fc4698e42c47c9583a24c93f5ce6b28a828a172709
+3.登陆到con03中
+
+# docker exec -it con03 /bin/bash
+[root@efc9bda4a2ff /]# exit
+4.停止con03
+
+# docker stop con03
+con03
+5.开启con03
+
+# docker start con03
+con03
+6.删除con03
+
+# docker ps -a
+CONTAINER ID        IMAGE                    COMMAND                CREATED             STATUS                      PORTS                                             NAMES
+efc9bda4a2ff        csphere/test:0.1         "/usr/local/bin/run    4 minutes ago       Up 17 seconds                                                                 con03               
+99aa6ee25adc        busybox:latest           "/bin/sh"              14 minutes ago      Exited (0) 12 minutes ago                                                     con02               
+831c93de9b9f        busybox:latest           "/bin/sh"              2 hours ago         Up 27 minutes                                                                 con01
+# docker rm con02     #容器停止的状态
+# docker rm -f con03  #容器开启的状态
+镜像操作
+1.从docker hub官方镜像仓库拉取镜像
+
+# docker pull busybox:latest
+atest: Pulling from busybox
+cf2616975b4a: Pull complete 
+6ce2e90b0bc7: Pull complete 
+8c2e06607696: Already exists 
+busybox:latest: The image you are pulling has been verified. Important: image verification is a tech preview feature and should not be relied on to provide security.
+Digest: sha256:38a203e1986cf79639cfb9b2e1d6e773de84002feea2d4eb006b52004ee8502d
+Status: Downloaded newer image for busybox:latest
+2.从本地上传镜像到镜像仓库
+
+docker push 192.168.1.2/csphere/nginx:1.7
+3.查找镜像仓库的某个镜像
+
+# docker search centos/nginx
+NAME                                     DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED
+johnnyzheng/centos-nginx-php-wordpress                                                   1                    [OK]
+sergeyzh/centos6-nginx                                                                   1                    [OK]
+hzhang/centos-nginx                                                                      1                    [OK]
+4.查看本地镜像列表
+
+# docker images
+TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
+docker.io/csphere/csphere   0.10.3              604c03bf0c9e        3 days ago          62.72 MB
+docker.io/csphere/csphere   latest              604c03bf0c9e        3 days ago          62.72 MB
+csphere/csphere             0.10.3              604c03bf0c9e        3 days ago          62.72 MB
+registry                    2.0                 2971b6ce766c        7 days ago          548.1 MB
+busybox                     latest              8c2e06607696        3 weeks ago         2.43 MB
+5.删除镜像
+
+docker rmi busybox:latest        #没有容器使用此镜像创建，如果有容器在使用此镜像会报错：Error response from daemon: Conflict, cannot delete 8c2e06607696 because the running container 831c93de9b9f is using it, stop it and use -f to force
+FATA[0000] Error: failed to remove one or more images
+docker rmi -f busybox:latest     #容器使用此镜像创建，此容器状态为Exited
+6.查看构建镜像所用过的命令
+
+# docker history busybox:latest
+IMAGE               CREATED             CREATED BY                                      SIZE
+8c2e06607696        3 weeks ago         /bin/sh -c #(nop) CMD ["/bin/sh"]               0 B
+6ce2e90b0bc7        3 weeks ago         /bin/sh -c #(nop) ADD file:8cf517d90fe79547c4   2.43 MB
+cf2616975b4a        3 weeks ago         /bin/sh -c #(nop) MAINTAINER Jérôme Petazzo     0 B
+
+
+补充：
+　添加Docker用户组，避免总是sudo输入
+sudo groupadd docker   #
+添加一个新的docker用户组
+sudo gpasswd -a username docker   
+#添加当前用户到docker用户组里
+sudo service docker restart   
+#重启Docker后台监护进程
+docker version   
+#重启之后，尝试一下，是否生效
+sudo reboot   
+#若还未生效，则系统重启，则生效
+docker cmd --help  #
+查看命令的详细使用 例如：docker run --help
+ 
+二、Docker下搭建LNMP
+ps：假设读者能够在ubuntu环境下搭建lnmp环境的情况。
+
+1、下载相应镜像到本地
+docker pull php:5.4-fpm
+docker pull php:5.5-fpm
+docker pull php:5.6-fpm
+docker pull php:7.0-fpm
+docker pull php:7.1-fpm
+docker pull mysql:5.7
+docker pull nginx:1.11
+
+2、创建相应容器
+#创建php:5.4-fpm的容器并命名php5.4，将容器的9000端口映射到主机的9000端口。把主机的/home/ubuntu/nginx/www目录挂载到容器的/www目录（这个目录用于存放php脚本文件）
+docker run -d -p 9000:9000 --name php5.4 -v /home/ubuntu/nginx/www:/www php:5.4-fpm   
+
+#在创建这个容器之前要先把前面创建的php5.4停止，不然9000端口会出现冲突。
+docker run -d -p 9000:9000 --name php5.5 -v /home/ubuntu/nginx/www:/www php:5.5-fpm   
+
+#在创建这个容器之前要把前
+面创建的两个都停止，不能同时运行多个php容器，要使用不同版本时，必须先stop正则运行的php容器，在start另一个版本的php容器
+docker run -d -p 9000:9000 --name php5.6 -v /home/ubuntu/nginx/www:/www php:5.6-fpm  
+ 
+
+#创建nginx容器，把配置主机的/home/ubuntu/nginx/conf目录挂载到容器的/etc/nginx/conf.d目录，用于处理nginx的配置文件，文件根目录与PHP的指向同一个
+docker run -d -p 80::80 --name nginx1.11 -v /home/ubuntu/nginx/conf:/etc/nginx/conf.d -v /home/ubuntu/nginx/www:/www nginx:1.11 
+
+#创建mysql容器，-e MYSQL_ROOT_PASSWORD=123456将mysql容器的root密码初始化为123456
+docker run -d -p 3306:3306 --name mysql5.7 -e MYSQL_ROOT_PASSWORD=123456 mysql:5.7  
+
+#创建infobright容器，与MySQL容器的创建方法类似
+docker run -d -p 5029:5029 --name myinfobright -e MYSQL_ROOT_PASSWORD=root infobright:latest
+
+#创建容器redis3.2， redis-server --apendonly yes 表示在容器执行redis-server启动命令，并打开redis持久化配置
+docker run -d -p 6379:6379 --name redis3.2 -v /home/ubuntu/redis/data:/data redis:3.2 redis-server --appendonly yes 
+
+docker run -d -p 11211:11211 --name memcached memcached:latest   #创建memcached容器。
+
+3、相关配置
+然后在/home/ubuntu/nginx/conf目录下新建文件default.conf文件，配置nginx虚拟机：
+复制代码
+server {
+　　listen 80;
+
+　　root /www;
+
+　　index index.php index.html index.htm index.nginx-debian.html;
+
+　　server_name test.com;
+
+　　location / {
+　　　　index index.php index.html index.htm; 
+　　　　if (!-e $request_filename) {
+　　　　　　rewrite ^/(.*)$ /index.php?$1 last;
+　　　　　　break;
+　　　　}
+　　}
+
+　　location ~ \.php$ {
+　　　　fastcgi_pass 172.17.0.3:9000; #这里的ip是对应PHP版本的容器的ip地址，查看容器ip地址的方法前面有介绍
+　　　　fastcgi_index index.php;
+　　　　fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+　　　　include fastcgi_params;
+　　}
+
+}
+复制代码
+ 
+
+　注意：安装php的容器的时候，php的镜像里应该都是没有相关扩展的。需要自己安装相关扩展，例如gd，mysql，mysqli等等。
+
+   以上面创建的php5.6为例：
+
+　首先进入容器：docker exec -it php5.6 /bin/bash 
+
+　然后就可以安装相关扩展：docker-php-ext-install mysqli （mysql，gd，curl，...）安装完扩展后可以使用docker commit提交到镜像成为自己定制的docker镜像。
+
+   安装镜像中非自带的php扩展：例如 php-redis 和 php-memcached 扩展：
+
+　php-redis扩展下载地址：https://github.com/phpredis/phpredis  （选择适合的版本下载）
+
+　php-memcached下载地址：https://github.com/php-memcached-dev/php-memcached  （选择适合版本下载）
+
+   可以在php容器内使用wget下载，也可以在ubuntu中下载后拷贝到容器中，我这里ubuntu中已经下载过这两个扩展，就直接用docker cp 将这两个扩展的源文件拷贝到php的容器中。
+
+   如果在容器中下载不要下载.zip类型，因为容器中没有unzip命令。可以在ubuntu中解压后将目录拷贝进容器。
+
+   docker cp /data/phpredis3.1.2  php5.6:/usr/src/php/ext/redis   #将ubuntu中的/data/phpredis3.1.2拷贝到容器的/usr/src/php/ext/目录下并重命名为redis 。
+
+   docker-php-ext-install redis    #安装 php-redis 扩展
+
+　安装memcached也是同理。。。
+
+   然后重启该容器即可。
+``````
+
+
+[jekyll-docs]: https://jekyllrb.com/docs/home
+[jekyll-gh]:   https://github.com/jekyll/jekyll
+[jekyll-talk]: https://talk.jekyllrb.com/
