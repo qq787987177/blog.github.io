@@ -17,8 +17,8 @@ title: Study Blog
 email: 787987177@qq.com
 description: >- # this means to ignore newlines until "baseurl:"
   技术博客
-#baseurl: "blog.github.io" # the subpath of your site, e.g. /blog
-baseurl: "" # the subpath of your site, e.g. /blog
+baseurl: "blog.github.io" # the subpath of your site, e.g. /blog
+#baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  qq787987177
 
