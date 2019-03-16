@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9f0959e9-7178-42eb-a753-de19e76bee9d" name="Default Changelist" comment="">
+    <list default="true" id="9f0959e9-7178-42eb-a753-de19e76bee9d" name="Default Changelist" comment="add">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/_config.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_site/feed.xml" beforeDir="false" afterPath="$PROJECT_DIR$/_site/feed.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -27,8 +29,29 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/_config.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="363">
-              <caret line="24" column="16" lean-forward="true" selection-start-line="24" selection-start-column="16" selection-end-line="24" selection-end-column="16" />
+            <state relative-caret-position="441">
+              <caret line="27" column="8" lean-forward="true" selection-start-line="27" selection-start-column="8" selection-end-line="27" selection-end-column="8" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/_site/study/2019/03/16/how-to-create-blog.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="78">
+              <caret line="6" column="37" selection-start-line="6" selection-start-column="37" selection-end-line="6" selection-end-column="37" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/_site/feed.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="494">
+              <caret line="20" column="27" lean-forward="true" selection-start-line="20" selection-start-column="27" selection-end-line="20" selection-end-column="27" />
+              <folding>
+                <element signature="e#1645#1649#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -45,6 +68,7 @@
       <find>assets</find>
       <find>username</find>
       <find>blog.github.io</find>
+      <find>minima</find>
     </findStrings>
     <replaceStrings>
       <replace>https://github.com/qq787987177/blog.github.io/tree/master/_site/assets</replace>
@@ -201,7 +225,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4402000" />
+    <option name="totallyTimeSpent" value="4556000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
@@ -210,6 +234,7 @@
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19147758" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -246,116 +271,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/_site/jekyll/update/2019/03/16/welcome-to-jekyll.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="87" lean-forward="true" selection-start-line="87" selection-end-line="87" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/_posts/2019-03-16-welcome-to-jekyll.markdown">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="442">
-            <caret line="22" column="45" selection-start-line="22" selection-start-column="45" selection-end-line="22" selection-end-column="45" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/_site/jekyll/update/2019/03/16/welcome-to-jekyll.html" />
+    <entry file="file://$PROJECT_DIR$/_posts/2019-03-16-welcome-to-jekyll.markdown" />
     <entry file="file://$PROJECT_DIR$/_site/feed.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="17" column="143" selection-start-line="17" selection-start-column="143" selection-end-line="17" selection-end-column="143" />
+        <state relative-caret-position="494">
+          <caret line="20" column="27" lean-forward="true" selection-start-line="20" selection-start-column="27" selection-end-line="20" selection-end-column="27" />
           <folding>
-            <element signature="e#902#906#0" expanded="true" />
-            <element signature="e#907#911#0" expanded="true" />
-            <element signature="e#919#923#0" expanded="true" />
-            <element signature="e#925#929#0" expanded="true" />
-            <element signature="e#931#935#0" expanded="true" />
-            <element signature="e#945#951#0" expanded="true" />
-            <element signature="e#968#974#0" expanded="true" />
-            <element signature="e#974#978#0" expanded="true" />
-            <element signature="e#978#982#0" expanded="true" />
-            <element signature="e#992#998#0" expanded="true" />
-            <element signature="e#1007#1013#0" expanded="true" />
-            <element signature="e#1013#1017#0" expanded="true" />
-            <element signature="e#1017#1021#0" expanded="true" />
-            <element signature="e#1031#1037#0" expanded="true" />
-            <element signature="e#1046#1052#0" expanded="true" />
-            <element signature="e#1052#1056#0" expanded="true" />
-            <element signature="e#1056#1060#0" expanded="true" />
-            <element signature="e#1064#1068#0" expanded="true" />
-            <element signature="e#1163#1168#0" expanded="true" />
-            <element signature="e#1171#1176#0" expanded="true" />
-            <element signature="e#1212#1218#0" expanded="true" />
-            <element signature="e#1228#1234#0" expanded="true" />
-            <element signature="e#1236#1241#0" expanded="true" />
-            <element signature="e#1244#1249#0" expanded="true" />
-            <element signature="e#1281#1287#0" expanded="true" />
-            <element signature="e#1307#1313#0" expanded="true" />
-            <element signature="e#1315#1320#0" expanded="true" />
-            <element signature="e#1323#1328#0" expanded="true" />
-            <element signature="e#1386#1390#0" expanded="true" />
-            <element signature="e#1395#1399#0" expanded="true" />
-            <element signature="e#1399#1403#0" expanded="true" />
-            <element signature="e#1407#1411#0" expanded="true" />
-            <element signature="e#1411#1415#0" expanded="true" />
-            <element signature="e#1419#1423#0" expanded="true" />
-            <element signature="e#1423#1427#0" expanded="true" />
-            <element signature="e#1431#1435#0" expanded="true" />
-            <element signature="e#1436#1440#0" expanded="true" />
-            <element signature="e#1441#1445#0" expanded="true" />
-            <element signature="e#1453#1457#0" expanded="true" />
-            <element signature="e#1459#1463#0" expanded="true" />
-            <element signature="e#1465#1469#0" expanded="true" />
-            <element signature="e#1479#1485#0" expanded="true" />
-            <element signature="e#1502#1508#0" expanded="true" />
-            <element signature="e#1508#1512#0" expanded="true" />
-            <element signature="e#1512#1516#0" expanded="true" />
-            <element signature="e#1526#1532#0" expanded="true" />
-            <element signature="e#1541#1547#0" expanded="true" />
-            <element signature="e#1547#1551#0" expanded="true" />
-            <element signature="e#1551#1555#0" expanded="true" />
-            <element signature="e#1565#1571#0" expanded="true" />
-            <element signature="e#1580#1586#0" expanded="true" />
-            <element signature="e#1586#1590#0" expanded="true" />
-            <element signature="e#1590#1594#0" expanded="true" />
-            <element signature="e#1598#1602#0" expanded="true" />
-            <element signature="e#1620#1624#0" expanded="true" />
-            <element signature="e#1629#1633#0" expanded="true" />
-            <element signature="e#1633#1637#0" expanded="true" />
-            <element signature="e#1641#1645#0" expanded="true" />
             <element signature="e#1645#1649#0" expanded="true" />
-            <element signature="e#1653#1657#0" expanded="true" />
-            <element signature="e#1657#1661#0" expanded="true" />
-            <element signature="e#1665#1669#0" expanded="true" />
-            <element signature="e#1670#1674#0" expanded="true" />
-            <element signature="e#1675#1679#0" expanded="true" />
-            <element signature="e#1687#1691#0" expanded="true" />
-            <element signature="e#1693#1697#0" expanded="true" />
-            <element signature="e#1699#1703#0" expanded="true" />
-            <element signature="e#1713#1719#0" expanded="true" />
-            <element signature="e#1736#1742#0" expanded="true" />
-            <element signature="e#1742#1746#0" expanded="true" />
-            <element signature="e#1746#1750#0" expanded="true" />
-            <element signature="e#1760#1766#0" expanded="true" />
-            <element signature="e#1775#1781#0" expanded="true" />
-            <element signature="e#1781#1785#0" expanded="true" />
-            <element signature="e#1785#1789#0" expanded="true" />
-            <element signature="e#1799#1805#0" expanded="true" />
-            <element signature="e#1814#1820#0" expanded="true" />
-            <element signature="e#1820#1824#0" expanded="true" />
-            <element signature="e#1824#1828#0" expanded="true" />
-            <element signature="e#1832#1836#0" expanded="true" />
-            <element signature="e#1881#1885#0" expanded="true" />
-            <element signature="e#1890#1894#0" expanded="true" />
-            <element signature="e#1894#1898#0" expanded="true" />
-            <element signature="e#1902#1906#0" expanded="true" />
-            <element signature="e#1906#1910#0" expanded="true" />
-            <element signature="e#1914#1918#0" expanded="true" />
-            <element signature="e#1918#1922#0" expanded="true" />
-            <element signature="e#1926#1930#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -364,14 +287,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="33">
           <caret line="66" column="33" selection-start-line="66" selection-start-column="33" selection-end-line="66" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor />
-          <second_editor />
         </state>
       </provider>
     </entry>
@@ -402,10 +317,25 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/index.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor />
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_site/study/2019/03/16/how-to-create-blog.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="78">
+          <caret line="6" column="37" selection-start-line="6" selection-start-column="37" selection-end-line="6" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/_config.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="363">
-          <caret line="24" column="16" lean-forward="true" selection-start-line="24" selection-start-column="16" selection-end-line="24" selection-end-column="16" />
+        <state relative-caret-position="441">
+          <caret line="27" column="8" lean-forward="true" selection-start-line="27" selection-start-column="8" selection-end-line="27" selection-end-column="8" />
         </state>
       </provider>
     </entry>
