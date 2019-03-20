@@ -50,7 +50,7 @@ for ($i = 1; $i < count($array); $i++) {
     while ($pos > 0 && $array[$pos - 1] > $key) {
         // 当前值  =  前一个值
         $array[$pos] = $array[$pos - 1];
-        // 当前位置后移
+        // 当前位置前移
         $pos = $pos - 1;
     }
     // 找到当前值的位置
