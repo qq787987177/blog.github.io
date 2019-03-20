@@ -88,7 +88,7 @@ for ($i = 1; $i &lt; count($array); $i++) {
     while ($pos &gt; 0 &amp;&amp; $array[$pos - 1] &gt; $key) {
         // 当前值  =  前一个值
         $array[$pos] = $array[$pos - 1];
-        // 当前位置后移
+        // 当前位置前移
         $pos = $pos - 1;
     }
     // 找到当前值的位置
