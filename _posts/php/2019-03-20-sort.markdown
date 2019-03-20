@@ -1,0 +1,90 @@
+---
+layout: post
+title:  "php排序算法"
+date:   2019-03-20 20:19:45 +0800
+categories: php
+---
+冒泡排序算法
+``````
+$array = [5, 1, 7, 23, 894, 6, 4, 78, 516, 9847, 561];
+
+for ($i = 0; $i < count($array); $i++) {
+    for ($j = 1; $j < count($array) - $i; $j++) {
+        if ($array[$j] < $array[$j - 1]) {
+            list($array[$j - 1], $array[$j]) = [$array[$j], $array[$j - 1]];
+        }
+    }
+}
+
+print_r($array);
+``````
+选择排序算法
+``````
+$array = [5, 1, 7, 23, 894, 6, 4, 78, 516, 9847, 561];
+
+for ($i = 0; $i < count($array); $i++) {
+    $minIndex = $i;
+    for ($j = $i + 1; $j < count($array); $j++) {
+        if ($array[$j] < $array[$minIndex]) {
+            $minIndex = $j;
+        }
+    }
+    if ($minIndex != $i) {
+        list($array[$i], $array[$minIndex]) = [$array[$minIndex], $array[$i]];
+    }
+
+}
+
+print_r($array);
+``````
+插入排序算法
+``````
+$array = [5, 1, 7, 23, 894, 6, 4, 78, 516, 9847, 561];
+
+for ($i = 1; $i < count($array); $i++) {
+    // 当前值
+    $key = $array[$i];
+    // 当前位置
+    $pos = $i;
+    // 如是当前位置 >0 && 当前值的前一个值 > 当前值 选出最值
+    while ($pos > 0 && $array[$pos - 1] > $key) {
+        // 当前值  =  前一个值
+        $array[$pos] = $array[$pos - 1];
+        // 当前位置后移
+        $pos = $pos - 1;
+    }
+    // 找到当前值的位置
+    $array[$pos] = $key;
+}
+
+print_r($array);
+
+``````
+快速排序算法
+
+``````
+$array = [5, 1, 7, 23, 894, 6, 4, 78, 516, 9847, 561];
+function quick_sort($array)
+{
+    if (count($array) <= 1) {
+        return $array;
+    }
+    $left  = [];
+    $right = [];
+    for ($i = 1; $i < count($array); $i++) {
+        if ($array[$i] < $array[0]) {
+            $left[] = $array[$i];
+        } else {
+            $right[] = $array[$i];
+        }
+    }
+
+    return array_merge(quick_sort($left), [$array[0]], quick_sort($right));
+}
+
+print_r(quick_sort($array));
+``````
+
+[jekyll-docs]: https://jekyllrb.com/docs/home
+[jekyll-gh]:   https://github.com/jekyll/jekyll
+[jekyll-talk]: https://talk.jekyllrb.com/
