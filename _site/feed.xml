@@ -1,4 +1,26 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-03-21T01:20:57+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Study Blog</title><subtitle>技术博客</subtitle><entry><title type="html">php排序算法</title><link href="http://localhost:4000/php/2019/03/20/sort.html" rel="alternate" type="text/html" title="php排序算法" /><published>2019-03-20T20:19:45+08:00</published><updated>2019-03-20T20:19:45+08:00</updated><id>http://localhost:4000/php/2019/03/20/sort</id><content type="html" xml:base="http://localhost:4000/php/2019/03/20/sort.html">&lt;p&gt;冒泡排序算法&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-03-23T14:00:21+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Study Blog</title><subtitle>技术博客</subtitle><entry><title type="html">Docker 容器中安装composer</title><link href="http://localhost:4000/docker/2019/03/23/docker-composerInstall.html" rel="alternate" type="text/html" title="Docker 容器中安装composer" /><published>2019-03-23T12:38:45+08:00</published><updated>2019-03-23T12:38:45+08:00</updated><id>http://localhost:4000/docker/2019/03/23/docker-composerInstall</id><content type="html" xml:base="http://localhost:4000/docker/2019/03/23/docker-composerInstall.html">&lt;p&gt;安装composer&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1.下载composer.phar
+
+wget https://getcomposer.org/composer.phar
+
+2.重命名composer.phar为composer
+
+mv composer.phar composer
+
+3.将composer放入容器中
+
+docker cp composer php:/usr/local/bin
+
+4.增加可执行权限
+
+docker exec -it php bash
+cd /usr/local/bin
+chmod +x composer
+
+5.查看是否成功
+
+composer
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">安装composer `````` 1.下载composer.phar</summary></entry><entry><title type="html">php排序算法</title><link href="http://localhost:4000/php/2019/03/20/sort.html" rel="alternate" type="text/html" title="php排序算法" /><published>2019-03-20T20:19:45+08:00</published><updated>2019-03-20T20:19:45+08:00</updated><id>http://localhost:4000/php/2019/03/20/sort</id><content type="html" xml:base="http://localhost:4000/php/2019/03/20/sort.html">&lt;p&gt;冒泡排序算法&lt;/p&gt;
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$array = [5, 1, 7, 23, 894, 6, 4, 78, 516, 9847, 561];
 
 for ($i = 0; $i &amp;lt; count($array); $i++) {
@@ -742,17 +764,4 @@ sudo kill -9 $(lsof -i:端口号 -t)
 
 find / -name '*redis.conf*'  //查看所有名字包含parameters的文件
 grep -r luck_draw_host /  //查看所有包含luck_draw_host的文件
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">linux常用指令 `````` 修改host vi /etc/hosts</summary></entry><entry><title type="html">mysql相关</title><link href="http://localhost:4000/mysql/2019/03/16/mysql-e.html" rel="alternate" type="text/html" title="mysql相关" /><published>2019-03-16T20:38:45+08:00</published><updated>2019-03-16T20:38:45+08:00</updated><id>http://localhost:4000/mysql/2019/03/16/mysql-e</id><content type="html" xml:base="http://localhost:4000/mysql/2019/03/16/mysql-e.html">&lt;p&gt;mysql相关&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;按距离排序
-SELECT
-	*
-FROM
-	sb_user_geo
-ORDER BY
-	ACOS(
-		SIN(('.$city_lat.' * 3.1415) / 180) * SIN((lat * 3.1415) / 180) + COS(('.$city_lat.' * 3.1415) / 180) * COS((lat * 3.1415) / 180) * COS(
-			('.$city_lng.' * 3.1415) / 180 - (lng * 3.1415) / 180
-		)
-	) * 6380 ASC
-LIMIT 30
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">mysql相关 按距离排序 SELECT * FROM sb_user_geo ORDER BY ACOS( SIN(('.$city_lat.' * 3.1415) / 180) * SIN((lat * 3.1415) / 180) + COS(('.$city_lat.' * 3.1415) / 180) * COS((lat * 3.1415) / 180) * COS( ('.$city_lng.' * 3.1415) / 180 - (lng * 3.1415) / 180 ) ) * 6380 ASC LIMIT 30</summary></entry></feed>
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">linux常用指令 `````` 修改host vi /etc/hosts</summary></entry></feed>
