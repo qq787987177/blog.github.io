@@ -8,14 +8,6 @@ categories: normal
 修改Settings Repository name为xxx.github.io
 修改GitHub Pages Source为Master分支后可以看到blog地址生成
 
-``````
-sudo apt-get install ruby-full build-essential zlib1g-dev
-echo '# Install Ruby Gems to ~/gems' >> ~/.bashrc
-echo 'export GEM_HOME="$HOME/gems"' >> ~/.bashrc
-echo 'export PATH="$HOME/gems/bin:$PATH"' >> ~/.bashrc
-source ~/.bashrc
-gem install jekyll bundler
-``````
 安装Jekyll
 
 ``````

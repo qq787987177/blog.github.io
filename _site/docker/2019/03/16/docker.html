@@ -125,7 +125,6 @@ docker ps # 显示状态为运行（Up）的容器
 　　　　-s :显示总的文件大小。
 
 docker inspect # 深入容器内部获取容器所有信息，例如：docker inspect mycon
-　　　　-f :指定返回值的模板文件。例如：docker inspect -f '' mycon （获取正在运行的容器mycon的 IP）
 
 　　　　-s :显示总的文件大小。
 
@@ -309,22 +308,6 @@ docker push # 将一个镜像push到registry仓库中，要先登陆到镜像仓
 docker info  #显示 Docker 系统信息，包括镜像和容器数。
 docker version  #显示 Docker 版本信息。参数-f :指定返回值的模板文件。
  
-Docker常见操作例子
-docker inspect id | grep IPAddress | cut -d '"' -f 4   #
-获取Container IP地址（Container状态必须是Up）
-docker inspect mycon | grep IPAddress   #查看mycon容器的IP地址相关的字段
-docker inspect -f '  -&gt;  ' id   #
-获取端口映射
-docker exec container_id env   #
-获取环境变量
-docker kill $(docker ps -q)   #
-杀掉所有正在运行的容器
-docker ps -a | grep 'weeks ago' | awk '{print $1}' | xargs docker rm   #
-删除老的(一周前创建)容器
-docker rm `docker ps -a -q`   #
-删除已经停止的容器
-docker rmi $(docker images -q)   #
-删除所有镜像，小心
 Dockerfile相关
 Dockerfile是docker构建镜像的基础，也是docker区别于其他容器的重要特征，正是有了Dockerfile，docker的自动化和可移植性才成为可能。
 
@@ -513,34 +496,6 @@ docker run -d -p 6379:6379 --name redis3.2 -v /home/ubuntu/redis/data:/data redi
 
 docker run -d -p 11211:11211 --name memcached memcached:latest   #创建memcached容器。
 
-3、相关配置
-然后在/home/ubuntu/nginx/conf目录下新建文件default.conf文件，配置nginx虚拟机：
-复制代码
-server {
-　　listen 80;
-
-　　root /www;
-
-　　index index.php index.html index.htm index.nginx-debian.html;
-
-　　server_name test.com;
-
-　　location / {
-　　　　index index.php index.html index.htm; 
-　　　　if (!-e $request_filename) {
-　　　　　　rewrite ^/(.*)$ /index.php?$1 last;
-　　　　　　break;
-　　　　}
-　　}
-
-　　location ~ \.php$ {
-　　　　fastcgi_pass 172.17.0.3:9000; #这里的ip是对应PHP版本的容器的ip地址，查看容器ip地址的方法前面有介绍
-　　　　fastcgi_index index.php;
-　　　　fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-　　　　include fastcgi_params;
-　　}
-
-}
 复制代码
  
 

@@ -1,0 +1,23 @@
+---
+layout: post
+title:  "laravel"
+date:   2019-03-23 22:48:45 +0800
+categories: laravel
+---
+Laravel 出现 No application encryption key has been specified.
+
+``````
+clone项目
+
+cp .env.example .env
+使用命令 php artisan key:generate  获取密码，自动保存到 .env
+``````
+
+Laravel ide提示
+``````
+https://github.com/barryvdh/laravel-ide-helper
+``````
+
+[jekyll-docs]: https://jekyllrb.com/docs/home
+[jekyll-gh]:   https://github.com/jekyll/jekyll
+[jekyll-talk]: https://talk.jekyllrb.com/

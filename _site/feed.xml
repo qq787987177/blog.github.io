@@ -1,4 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-03-23T14:00:21+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Study Blog</title><subtitle>技术博客</subtitle><entry><title type="html">Docker 容器中安装composer</title><link href="http://localhost:4000/docker/2019/03/23/docker-composerInstall.html" rel="alternate" type="text/html" title="Docker 容器中安装composer" /><published>2019-03-23T12:38:45+08:00</published><updated>2019-03-23T12:38:45+08:00</updated><id>http://localhost:4000/docker/2019/03/23/docker-composerInstall</id><content type="html" xml:base="http://localhost:4000/docker/2019/03/23/docker-composerInstall.html">&lt;p&gt;安装composer&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-03-23T22:49:21+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Study Blog</title><subtitle>技术博客</subtitle><entry><title type="html">laravel</title><link href="http://localhost:4000/laravel/2019/03/23/laravel.html" rel="alternate" type="text/html" title="laravel" /><published>2019-03-23T22:48:45+08:00</published><updated>2019-03-23T22:48:45+08:00</updated><id>http://localhost:4000/laravel/2019/03/23/laravel</id><content type="html" xml:base="http://localhost:4000/laravel/2019/03/23/laravel.html">&lt;p&gt;Laravel 出现 No application encryption key has been specified.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;clone项目
+
+cp .env.example .env
+使用命令 php artisan key:generate  获取密码，自动保存到 .env
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Laravel ide提示&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;https://github.com/barryvdh/laravel-ide-helper
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">Laravel 出现 No application encryption key has been specified.</summary></entry><entry><title type="html">Docker 容器中安装composer</title><link href="http://localhost:4000/docker/2019/03/23/docker-composerInstall.html" rel="alternate" type="text/html" title="Docker 容器中安装composer" /><published>2019-03-23T12:38:45+08:00</published><updated>2019-03-23T12:38:45+08:00</updated><id>http://localhost:4000/docker/2019/03/23/docker-composerInstall</id><content type="html" xml:base="http://localhost:4000/docker/2019/03/23/docker-composerInstall.html">&lt;p&gt;安装composer&lt;/p&gt;
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1.下载composer.phar
 
 wget https://getcomposer.org/composer.phar
@@ -307,7 +317,6 @@ docker ps # 显示状态为运行（Up）的容器
 　　　　-s :显示总的文件大小。
 
 docker inspect # 深入容器内部获取容器所有信息，例如：docker inspect mycon
-　　　　-f :指定返回值的模板文件。例如：docker inspect -f '' mycon （获取正在运行的容器mycon的 IP）
 
 　　　　-s :显示总的文件大小。
 
@@ -491,22 +500,6 @@ docker push # 将一个镜像push到registry仓库中，要先登陆到镜像仓
 docker info  #显示 Docker 系统信息，包括镜像和容器数。
 docker version  #显示 Docker 版本信息。参数-f :指定返回值的模板文件。
  
-Docker常见操作例子
-docker inspect id | grep IPAddress | cut -d '&quot;' -f 4   #
-获取Container IP地址（Container状态必须是Up）
-docker inspect mycon | grep IPAddress   #查看mycon容器的IP地址相关的字段
-docker inspect -f '  -&amp;gt;  ' id   #
-获取端口映射
-docker exec container_id env   #
-获取环境变量
-docker kill $(docker ps -q)   #
-杀掉所有正在运行的容器
-docker ps -a | grep 'weeks ago' | awk '{print $1}' | xargs docker rm   #
-删除老的(一周前创建)容器
-docker rm `docker ps -a -q`   #
-删除已经停止的容器
-docker rmi $(docker images -q)   #
-删除所有镜像，小心
 Dockerfile相关
 Dockerfile是docker构建镜像的基础，也是docker区别于其他容器的重要特征，正是有了Dockerfile，docker的自动化和可移植性才成为可能。
 
@@ -695,34 +688,6 @@ docker run -d -p 6379:6379 --name redis3.2 -v /home/ubuntu/redis/data:/data redi
 
 docker run -d -p 11211:11211 --name memcached memcached:latest   #创建memcached容器。
 
-3、相关配置
-然后在/home/ubuntu/nginx/conf目录下新建文件default.conf文件，配置nginx虚拟机：
-复制代码
-server {
-　　listen 80;
-
-　　root /www;
-
-　　index index.php index.html index.htm index.nginx-debian.html;
-
-　　server_name test.com;
-
-　　location / {
-　　　　index index.php index.html index.htm; 
-　　　　if (!-e $request_filename) {
-　　　　　　rewrite ^/(.*)$ /index.php?$1 last;
-　　　　　　break;
-　　　　}
-　　}
-
-　　location ~ \.php$ {
-　　　　fastcgi_pass 172.17.0.3:9000; #这里的ip是对应PHP版本的容器的ip地址，查看容器ip地址的方法前面有介绍
-　　　　fastcgi_index index.php;
-　　　　fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-　　　　include fastcgi_params;
-　　}
-
-}
 复制代码
  
 
@@ -751,17 +716,4 @@ server {
 　安装memcached也是同理。。。
 
    然后重启该容器即可。
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">Docker常见命令 ``````</summary></entry><entry><title type="html">linux常用指令</title><link href="http://localhost:4000/linux/2019/03/16/normal.html" rel="alternate" type="text/html" title="linux常用指令" /><published>2019-03-16T20:38:45+08:00</published><updated>2019-03-16T20:38:45+08:00</updated><id>http://localhost:4000/linux/2019/03/16/normal</id><content type="html" xml:base="http://localhost:4000/linux/2019/03/16/normal.html">&lt;p&gt;linux常用指令&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;修改host
-vi /etc/hosts
-
-以用lsof查看占用端口的进程号
-lsof -i:端口号
-然后kill掉占用进程，就可以再次启动server了
-kill -9 进程号
-当然上述还是有些麻烦，因此可以用以下一条命令替代：
-sudo kill -9 $(lsof -i:端口号 -t)
-
-find / -name '*redis.conf*'  //查看所有名字包含parameters的文件
-grep -r luck_draw_host /  //查看所有包含luck_draw_host的文件
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">linux常用指令 `````` 修改host vi /etc/hosts</summary></entry></feed>
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">Docker常见命令 ``````</summary></entry></feed>
